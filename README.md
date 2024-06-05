@@ -70,6 +70,9 @@ du tutoriel !
 Le tutoriel est découpé en plusieurs parties afin d'illustrer les différents concepts essentiels à maîtriser pour 
 créer un dashboard Streamlit élégant et interactif.
 
+Ce tutoriel est divisé en plusieurs étapes. Chaque étape abouti à une application streamlit et illustre un sous ensemble
+de concepts important lorsque l'on crée des dashboards avec Streamlit
+
 ### Sommaire
 
 1. Créer un layout pour son dashboard
@@ -81,17 +84,21 @@ créer un dashboard Streamlit élégant et interactif.
 
 ## Documentation officielle
 
-La documentation officielle de Streamlit est disponible [ici](https://docs.streamlit.io/)
-La liste des composant Streamlit est disponible [ici](https://docs.streamlit.io/develop/api-reference)
+Il existe plein de composants que l'on a pas exploré dans le tutoriels, vous pouvez tous les retrouver dans la 
+documentation officielle de Streamlit
+
+- La documentation officielle de Streamlit est disponible [ici](https://docs.streamlit.io/)
+- La liste des composant Streamlit est disponible [ici](https://docs.streamlit.io/develop/api-reference)
 
 ## Canaux de discussion 
 
 Pour les membres du réseau Bioinfo Nantais (BN), vous pouvez poser vos questions sur ce tutoriel dans le 
 [canal dédié](https://mattermost.univ-nantes.fr/bioinfosnantais/channels/town-square) sur mattermost
 
-Pour les personnes non membre du réseau vous pouvez poser vos question en ouvrant une issue avec le label "question"
+Pour les personnes non membre du réseau vous pouvez poser vos question en 
+[ouvrant une issue](https://github.com/Phloemus/Streamlit-Coin-Geek/issues/new) avec le label "question"
 directement dans ce répertoire Github
 
 <p>
-    <em>Brieuc Quemeneur pour le réseau <b>Bioinfo Nantais</b></em>
+    <em><b>Brieuc Quemeneur</b> pour le réseau <b>Bioinfo Nantais</b></em>
 </p>
