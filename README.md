@@ -11,15 +11,15 @@
 
 ## Objectifs
 
-L'objectif de ce tutoriel est d'apprendre à utiliser Streamlit pour créer des petites démo (dashboard) web. 
+L'objectif de ce tutoriel est d'apprendre à utiliser Streamlit pour créer des petites démos (dashboard) web. 
 L'avantage d'un dashboard c'est qu'il s'agit d'une interface simple que les biologistes peuvent utiliser sans aucun 
 problème. 
 
-Streamlit rend le traitement des données biologique plus transparant pour les biologistes humide. Par exemple un 
+Streamlit rend le traitement des données biologique plus transparant pour les biologistes humides. Par exemple un 
 dashboard Streamlit est excellent pour montrer des résultats d'analyse à son responsable de thèse. 
 
-Malgré tous les avantage qu'offre Streamlit, c'est un outil encore méconnu de la communauté bioinfo. Dans ce coin geek
-on va y remédier et apprendre à créer des dashboard web pour montrer ses données !
+Malgré tous les avantages qu'offre Streamlit, c'est un outil encore méconnu de la communauté bioinfo. Dans ce coin geek
+on va y remédier et apprendre à créer des dashboards web pour montrer ses données !
 
 ## Requirements
 
@@ -29,17 +29,17 @@ Pour bien suivre le tutoriel, il y a certains programmes qui sont nécéssaire d
 - conda
 - python3
 
-De préférence, utilisez plutôt Linux pour suivre le tutoriel. Sous windows, les étapes devraient être identiques, 
+De préférence, utiliser plutôt Linux pour suivre le tutoriel. Sous windows, les étapes devraient être identiques, 
 mais des erreurs de packages python peuvent tout de même subsister :/ 
 
 > [!NOTE]
-> Si vous rencontrez des difficultés à installer certains d'entre eux, n'hésitez pas à demander de l'aide sur le 
+> Si vous rencontrez des difficultés à installer les packages ou un programme, n'hésitez pas à demander de l'aide sur le 
 > [serveur mattermost](https://mattermost.univ-nantes.fr/bioinfosnantais/channels/town-square) du réseau BN 
 > (c'est un endroit pratique pour demander de l'aide en cas de bloquage !)
 
 ## Mise en place de l'environement
 
-Une application streamlit repose sur plusieurs packages pythons qu'il est pertinent de mettre dans un même 
+Une application streamlit repose sur plusieurs packages python qu'il est pertinent de regrouper dans un même 
 environement conda. La liste des packages nécéssaire pour créer l'application démo du tutoriel est dans
 le fichier **src/environment.yaml**.
 
@@ -62,11 +62,36 @@ source activate streamlit-coin-geek
 conda env export > src/environment.yaml
 ```
 
-Et voilà, maintenant il y un environment conda avec streamlit et tous les packages pour déployer l'application du 
-tutoriel !
+Et voilà, maintenant il y un environment conda avec streamlit et tous les packages nécéssaire pour déployer l'application 
+du tutoriel !
 
 ## Tutoriel
 
+Le tutoriel est découpé en plusieurs parties afin d'illustrer les différents concepts essentiels à maîtriser pour 
+créer un dashboard Streamlit élégant et interactif.
+
+### Sommaire
+
+1. Créer un layout pour son dashboard
+2. Ajouter de nouvelles pages
+3. Rendre son dashboard interactif
+4. Partager son dashboard avec d'autres personnes
+   - Déployer sur le service cloud de Streamlit
+   - Déployer sur une machine virtuelle
+
 ## Documentation officielle
 
+La documentation officielle de Streamlit est disponible [ici](https://docs.streamlit.io/)
+La liste des composant Streamlit est disponible [ici](https://docs.streamlit.io/develop/api-reference)
+
 ## Canaux de discussion 
+
+Pour les membres du réseau Bioinfo Nantais (BN), vous pouvez poser vos questions sur ce tutoriel dans le 
+[canal dédié](https://mattermost.univ-nantes.fr/bioinfosnantais/channels/town-square) sur mattermost
+
+Pour les personnes non membre du réseau vous pouvez poser vos question en ouvrant une issue avec le label "question"
+directement dans ce répertoire Github
+
+<p>
+    <em>Brieuc Quemeneur pour le réseau <b>Bioinfo Nantais</b></em>
+</p>
