@@ -8,11 +8,33 @@ df = pd.read_csv("data/fr-population-1999-2024.csv")
 
 ## Dataset formating
 df.drop(columns=df.columns[3], inplace=True)
-df = df.iloc[1:].reset_index(drop=True)
+df = df.iloc[0:].reset_index(drop=True)
 new_header = ['Numéro département', 'Nom département', '2024', '2021', '2015', '2010', '1999']
 df.columns = new_header
 df = df[df['Nom département'] != 'France métropolitaine']
 df = df[df['Nom département'] != 'France']
+
+############## States ##################################################################
+if 'dfGraph' is not st.session_state:
+    dfEvolution = df.loc[df["Nom département"] == 'Ain']
+    dfEvolution = dfEvolution.drop(columns=["Numéro département", "Nom département"])
+    st.session_state.dfGraph = dfEvolution
+
+if 'department' is not st.session_state:
+    st.session_state.department = 'Ain'
+
+# Callbacks
+def filterByDepartment(): ##! this callback takes the OLD values. it executes before the department state changes
+    print("changed")
+    print(st.session_state.department)
+    print(st.session_state.dfGraph)
+    dfEvolution = df.loc[df["Nom département"] == st.session_state.department]
+    dfEvolution = dfEvolution.drop(columns=["Numéro département", "Nom département"])
+    st.session_state.dfGraph = dfEvolution
+
+
+############# Content of the page ######################################################
+
 
 # Page configuration
 st.set_page_config(
@@ -20,7 +42,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded")
 
-# Content of the page
 st.title("Mon premier dashboard Streamlit")
 
 st.markdown("")
@@ -33,9 +54,10 @@ col = st.columns((2, 4, 2), gap='medium')
 with col[0]:
     st.markdown("")
     st.header("Recherche")
-    department = st.selectbox(
+    st.session_state.department = st.selectbox(
         "Département",
-        ("44 - Loire atlantique", "Other")
+        df[["Nom département"]],
+        on_change=filterByDepartment
     )
     dataset = st.selectbox(
         "Nom du dataset",
@@ -54,10 +76,9 @@ with col[1]:
     
     with graphTabEvolution:
         st.markdown("graphe evolution")
-        dfEvolution = df[df['Nom département'] == 'Ain'] ## Problem : this is an empty dataframe..
-        dfEvolution = dfEvolution.iloc[2:].reset_index(drop=True)
-        print(dfEvolution)
-        st.line_chart(dfEvolution)
+        print(st.session_state.department)
+        print(st.session_state.dfGraph)
+        st.line_chart(st.session_state.dfGraph.transpose())
 
     with graphTabComparison:
         st.markdown("graphe comparaison")
