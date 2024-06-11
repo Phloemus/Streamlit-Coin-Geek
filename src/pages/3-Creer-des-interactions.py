@@ -175,7 +175,7 @@ st.code(
         
         ## Dataset formating
         df.drop(columns=df.columns[3], inplace=True)
-        df = df.iloc[1:].reset_index(drop=True)
+        df = df.iloc[0:].reset_index(drop=True)
         new_header = ['Numéro département', 'Nom département', '2024', '2021', '2015', '2010', '1999']
         df.columns = new_header
         df = df[df['Nom département'] != 'France métropolitaine']

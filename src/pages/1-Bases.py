@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 
 
 ## Set the configuration of the page 
@@ -14,18 +15,42 @@ st.markdown("")
 
 st.markdown(
         """
-            ## Introduction et bases 
+            ## Créer sa première application
 
             Pour créer une application streamlit, il suffit de créer un fichier python (ex: **app.py**)
             et importer le package **streamlit**. Ce package permet de faire de très nombreuses choses mais surtout 
             de pouvoir écrire sur la page web directement en utilisant des fonctions accessibles depuis l'objet 
             streamlit !
-
-            Admettons que l'on aie un fichier app.py et que l'on importe streamlit dedans
         """
 )
 
+st.markdown("")
+
+st.info(
+    """
+        **app.py**
+
+        Pour le tutoriel on va créer une application streamlit dans app.py que l'on modifiera au fur et à mesure que l'on avance dans le tutoriel
+    """
+)
+
+st.code(
+    """
+        ## Créer app.py dans src
+        cd src
+        touch app.py
+    """
+)
+
+st.markdown(
+    """
+        Importer le package Streamlit dans le fichier **app.py**
+    """
+)
+
 st.code("import streamlit as st", language="python", line_numbers=False)
+
+st.markdown("## Ajouter du contenu dans son application")
 
 st.markdown(
         """
@@ -62,10 +87,81 @@ st.info(
 )
 
 st.markdown(
-        """
-           ## Partie 1 - Les layouts
+    """
+        ## Partie 1 - Les composants interactifs
 
-           Cette permière partie du tutoriel a pour but de comprendre comment positionner différents
+        Il y a plein de choses que l'on peut ajouter sur une application streamlit. 
+        Des **bouttons**, des **champs à remplir**, des **checkbox**, etc..
+
+        En voici un petit panel !
+    """
+)
+
+colSelectors, colFields = st.columns(2)
+
+with colSelectors:
+    st.markdown("Les composants à cliquer")
+    st.button("Click me !", type="primary")
+    st.radio("Nom du gène",
+    ["herg1", "aadA1", "aadA13"])
+    st.select_slider(
+    "Select a range of color wavelength",
+    options=["red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+    value=("red", "blue"))
+
+with colFields:
+    st.markdown("Les composants à remplir")
+    st.selectbox("Nom du gène",
+    ("herg1", "aadA1", "aadA13"))
+    st.text_input("Nom du gène", "aadA1")
+    st.date_input("Date de l'analyse", datetime.date(2024, 7, 6))
+
+with st.expander("Code des composants cliquables"):
+    st.code(
+        """
+            ## Button        
+            st.button("Click me !", type="primary")
+
+            ## Boutton radio
+            st.radio("Nom du gène",
+            ["herg1", "aadA1", "aadA13"])
+
+            ## Slider
+            st.select_slider("Select a range of color wavelength",
+                options=["red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+                value=("red", "blue"))
+        """
+    )
+
+
+with st.expander("Code des composants à remplissables"):
+    st.code(
+        """
+            ## Select box
+            st.selectbox("Nom du gène", ("herg1", "aadA1", "aadA13"))
+
+            ## Text input
+            st.text_input("Nom du gène", "aadA1")
+
+            ## Date input
+            st.date_input("Date de l'analyse", datetime.date(2024, 7, 6))
+        """
+    )
+
+st.info(
+    """
+        **Tous les composants de streamlit**
+
+        Il y a une liste de tous les composants de streamlit dans la 
+        [documentation](https://docs.streamlit.io/develop/api-reference)
+    """
+)
+
+st.markdown(
+        """
+           ## Partie 2 - Les layouts
+
+           Cette partie du tutoriel a pour but de comprendre comment positionner différents
            éléments sur un dashboard Streamlit. Le but est de manipuler les différents types de layouts 
            pour que le dashboard soit bien organisé
         """
@@ -73,9 +169,29 @@ st.markdown(
 
 st.markdown("")
 
-st.warning("Le code de ce dashboard et les tutoriels sont disponibles sur la repo [Github](https://github.com/Phloemus/Streamlit-Coin-Geek), le plus pratique est de cloner la repo pour suivre le tutoriel")
+st.markdown(
+    """
+        ### Changer la taille de la page
 
-st.markdown("")
+        De base, Streamlit affiche le contenu sur une petite partie de l'écran et centre le 
+        contenu. C'est très joli pour écrire du texte ou de la documentation mais ça 
+        représente une très grosse perte de place lorsqu'il s'agit de créer un dashboard :/
+
+        Heureusement, il est possible de changer la taille prise par le contenu sur les pages
+        en passant le paramètre **layout** à la fonction **set_page_config**
+    """
+)
+
+st.code(
+    """
+        ## configuration de la page
+        st.set_page_config(
+            page_title="Streamlit - Les bases",
+            layout="centered",
+            initial_sidebar_state="expanded"
+        )
+    """
+)
 
 st.markdown(
         """
@@ -133,6 +249,20 @@ with st.expander("Voir le code pour les colonnes"):
         language="python",
         line_numbers=False
     )
+
+st.markdown(
+    """
+        Les colonnes peuvent avoir des tailles différentes en précisant la part de page 
+        qui doit être utilisée par chaque colonne
+    """
+)
+
+st.code(
+    """
+        ## la colonne du centre sera deux fois plus grande que les colonnes des extrémités
+        col = st.columns((2, 4, 2), gap='medium')
+    """
+)
 
 st.markdown(
         """
@@ -248,12 +378,24 @@ st.header("Partie manip - A vos clavier !")
 
 st.markdown(
         """
-            Créer d'un layout pour un dashboard d'analyse de données avec 
-            streamlit pour avoir un résultat ressemblant à ceci:
+            Ajouter du code python dans **app.py** pour 
+            créer le layout d'un dashboard d'analyse de données avec 
+            streamlit. Le résultat doit ressembler ressemblant à ceci:
         """
 )
 
 st.image("images/layout-manip.png", caption="manip-layout")
+
+st.subheader("Tips")
+
+st.markdown(
+    """
+        - Commencer par déterminer quel est le layout du dashboard
+        - Utiliser les composants que l'on a vu dans cette page du tuto
+    """
+)
+
+st.subheader("Code de la solution")
 
 with st.expander("Proposition de correction"):
     st.code(
