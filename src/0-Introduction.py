@@ -70,10 +70,13 @@ st.markdown(
 st.code(
     """
         ## Récupérer l'envrionment du tutoriel
-        conda create --name cg-streamlit -f environment.yaml
+        conda env create --name cg-streamlit -f environment.yaml
 
         ## Activer l'environment conda
         source activate cg-streamlit
+
+        ## Ou pour les puristes
+        conda activate cg-streamlit
     """
 )
 

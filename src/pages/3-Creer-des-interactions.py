@@ -316,7 +316,7 @@ st.markdown(
     """
 )
 
-with st.expander("Code fonction de formatage des données")
+with st.expander("Code fonction de formatage des données"):
     st.code(
         """
             def filterByDepartment(): 
