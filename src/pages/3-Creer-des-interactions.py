@@ -294,11 +294,8 @@ st.markdown("""
 
         Créer les variables d'états suivantes
 
-        - departmentName
-        - datasetName
-        - yearStart
-        - yearEnd
-        - graphMode
+        - department
+        - dfGraph
     """
 )
 
@@ -314,9 +311,20 @@ st.markdown(
     """
         ### Créer une fonction de formatage des données utilisée pour le graphe
 
-
+        Formater les données avec une fonction callback qui servira de filtre pour avoir qu'une partie du dataframe
+        au lieu du dataframe entier.
     """
 )
+
+with st.expander("Code fonction de formatage des données")
+    st.code(
+        """
+            def filterByDepartment(): 
+                dfEvolution = df.loc[df["Nom département"] == st.session_state.department]
+                dfEvolution = dfEvolution.drop(columns=["Numéro département", "Nom département"])
+                st.session_state.dfGraph = dfEvolution
+        """
+    )
 
 st.markdown(
     """
