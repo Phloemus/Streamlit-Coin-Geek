@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 
 ## Set the configuration of the page 
@@ -72,7 +73,18 @@ st.markdown(
     """
         Dans cet exemple, on ajoute une variable d'état au programme. Toutes les variables d'états de streamlit sont 
         rassemblées dans le dictionnaire **st.session_state**. 
+    """
+)
 
+st.markdown("")
+
+with st.expander("Le contenu de **session_state**"):
+    st.write(st.session_state)
+
+st.markdown("")
+
+st.markdown(
+    """
         Lorsque l'on modifie une variable d'état 
         (correspondant à une certaine clé dans **st.session_state**), tous les composants de la page utilisant cette 
         variables seront ré-affichés sur la page avec la nouvelle valeur de la variable d'état
@@ -143,6 +155,99 @@ st.warning(
         compteur de la démo 1 va aussi augmenter la valeur du compteur dans la démo 2 !!
     """
 )
+
+st.header("Lier les états aux composants interactifs")
+
+st.markdown(
+    """
+        Le plus grand défi est de lier les états aux composants interactifs pour traquer les valeurs données
+        par l'utilisateur du dashboard et modifier les données en fonction de ça.
+    """
+)
+
+st.markdown(
+    """
+        Pour se faire il est possible de lier un composant avec une variable d'état spécifique. Lorsque la valeur du 
+        composant change, la valeur de l'état aussi ce qui fait qui provoque un réaffichage de la page avec la nouvelle
+        valeur écrite dans le composant.
+    """
+)
+
+if 'name' not in st.session_state:
+    st.session_state['name'] = ""
+
+st.text_input("Enter your name", key="name")
+st.write(st.session_state['name'])
+
+st.code(
+    """
+        st.text_input("Your name", key="name")
+
+        st.write(st.session_state['name'])
+    """
+)
+
+st.subheader("Changer des données en fonction d'une option")
+
+st.markdown("Voici un autre petit exemple. Cette fois ci pour modifier l'affichage d'un tableau selon l'option selectionnée")
+
+# Combined data in a single DataFrame
+data = {
+    'Option': ['Option 1', 'Option 1', 'Option 1', 
+               'Option 2', 'Option 2', 'Option 2',
+               'Option 3', 'Option 3', 'Option 3'],
+    'Column A': [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    'Column B': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+}
+df = pd.DataFrame(data)
+
+# Callback function to update the filtered DataFrame
+def update_table():
+    st.session_state.filtered_df = df[df['Option'] == st.session_state.selected_option]
+
+# Initialize session state for select box and filtered DataFrame
+if 'selected_option' not in st.session_state:
+    st.session_state.selected_option = 'Option 1'
+    st.session_state.filtered_df = df[df['Option'] == 'Option 1']
+
+# Select box to choose data option
+selected_option = st.selectbox("Choose an option:", df['Option'].unique(), key='selected_option', on_change=update_table)
+
+# Display the filtered table
+st.table(st.session_state.filtered_df)
+
+with st.expander("Code du tableau qui bouge"):
+   st.code(
+        """
+            # Combined data in a single DataFrame
+            data = {
+                'Option': ['Option 1', 'Option 1', 'Option 1', 
+                           'Option 2', 'Option 2', 'Option 2',
+                           'Option 3', 'Option 3', 'Option 3'],
+                'Column A': [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                'Column B': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+            }
+            df = pd.DataFrame(data)
+            
+            # Callback function to update the filtered DataFrame
+            def update_table():
+                st.session_state.filtered_df = df[df['Option'] == st.session_state.selected_option]
+            
+            # Initialize session state for select box and filtered DataFrame
+            if 'selected_option' not in st.session_state:
+                st.session_state.selected_option = 'Option 1'
+                st.session_state.filtered_df = df[df['Option'] == 'Option 1']
+            
+            # Streamlit app
+            st.title("Dynamic Table Based on Select Box with Callback")
+            
+            # Select box to choose data option
+            selected_option = st.selectbox("Choose an option:", df['Option'].unique(), key='selected_option', on_change=update_table)
+            
+            # Display the filtered table
+            st.table(st.session_state.filtered_df)
+        """
+    ) 
 
 st.markdown("")
 

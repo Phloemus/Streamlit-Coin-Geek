@@ -58,19 +58,25 @@ with tab2:
         """
     )
 
-st.markdown(
+st.info(
     """
-        Le nom des pages est le même que le nom des fichiers. Par exemple: page1.py s'affichera page1 dans 
-        la barre de navigation. Aussi les pages s'affichent dans l'ordre alphabetique mais il est possible de
-        contraindre l'ordre des pages en les nommant avec un chiffre au début. Par exemple, la page 1-Bases.py 
-        s'affichera au dessus de la page 2-Avance.py dans la sidebar !
+        **Le nom des pages est le même que le nom des fichiers**
+
+        Par exemple: **page1.py** s'affichera **page1** dans la barre de navigation. 
+
+        Aussi les pages s'affichent dans l'ordre alphabetique mais il est possible de
+        contraindre l'ordre des pages en les nommant avec un chiffre au début. 
+
+        Par exemple, la page **1-Bases.py** 
+        s'affichera au dessus de la page **2-Avance.py** dans la sidebar !
     """
 )
 
 st.markdown(
     """
         Pour le dashboard que l'on crée dans ce tutoriel, on ne va pas utiliser plusieurs pages. Par contre 
-        l'application que vous êtes en train de consulter contient plusieurs pages, et même le dashboard que 
-        l'on va créer à la fin du tutoriel !!
+        l'application que vous êtes en train de consulter contient plusieurs pages. 
+
+        Le **dashboard** que l'on crée dans ce tutoriel est une page du tuto !
     """
 )

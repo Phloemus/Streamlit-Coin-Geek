@@ -50,6 +50,24 @@ st.markdown(
 
 st.code("import streamlit as st", language="python", line_numbers=False)
 
+st.markdown(
+    """
+        Lancer l'application avec la commande suivante :
+    """
+)
+
+st.code(
+    """
+        streamlit run app.py
+    """
+)
+
+st.markdown(
+    """
+        L'application streamlit est lancée par défaut sur *localhost:8501* (et pour l'instant il n'y a rien du tout dessus)
+    """
+)
+
 st.markdown("## Ajouter du contenu dans son application")
 
 st.markdown(
@@ -100,7 +118,7 @@ st.markdown(
 colSelectors, colFields = st.columns(2)
 
 with colSelectors:
-    st.markdown("Les composants à cliquer")
+    st.markdown("### Les composants à cliquer")
     st.button("Click me !", type="primary")
     st.radio("Nom du gène",
     ["herg1", "aadA1", "aadA13"])
@@ -110,7 +128,7 @@ with colSelectors:
     value=("red", "blue"))
 
 with colFields:
-    st.markdown("Les composants à remplir")
+    st.markdown("### Les composants à remplir")
     st.selectbox("Nom du gène",
     ("herg1", "aadA1", "aadA13"))
     st.text_input("Nom du gène", "aadA1")

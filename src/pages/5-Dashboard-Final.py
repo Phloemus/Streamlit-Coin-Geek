@@ -14,24 +14,28 @@ df.columns = new_header
 df = df[df['Nom département'] != 'France métropolitaine']
 df = df[df['Nom département'] != 'France']
 
-############## States ##################################################################
-if 'dfGraph' is not st.session_state:
-    dfEvolution = df.loc[df["Nom département"] == 'Ain']
-    dfEvolution = dfEvolution.drop(columns=["Numéro département", "Nom département"])
-    st.session_state.dfGraph = dfEvolution
 
-if 'department' is not st.session_state:
-    st.session_state.department = 'Ain'
-
-# Callbacks
-def filterByDepartment(): ##! this callback takes the OLD values. it executes before the department state changes
-    print("changed")
-    print(st.session_state.department)
-    print(st.session_state.dfGraph)
+############ Callbacks
+def filterByDepartment(): 
     dfEvolution = df.loc[df["Nom département"] == st.session_state.department]
     dfEvolution = dfEvolution.drop(columns=["Numéro département", "Nom département"])
     st.session_state.dfGraph = dfEvolution
 
+def filterByDate():
+    print(st.session_state['dateRange'])
+    
+
+############## States ##################################################################
+if 'department' not in st.session_state:
+    st.session_state['department'] = 'Ain'
+
+## if 'dateRange' not in st.session_state:
+##    st.session_state['dateRange'] = ['1999', '2010', '2015']
+
+if 'dfGraph' not in st.session_state:
+    dfEvolution = df.loc[df["Nom département"] == 'Ain']
+    dfEvolution = dfEvolution.drop(columns=["Numéro département", "Nom département"])
+    st.session_state['dfGraph'] = dfEvolution
 
 ############# Content of the page ######################################################
 
@@ -54,9 +58,10 @@ col = st.columns((2, 4, 2), gap='medium')
 with col[0]:
     st.markdown("")
     st.header("Recherche")
-    st.session_state.department = st.selectbox(
+    st.selectbox(
         "Département",
         df[["Nom département"]],
+        key="department",
         on_change=filterByDepartment
     )
     dataset = st.selectbox(
@@ -64,27 +69,27 @@ with col[0]:
         ("Population", "Custom")
     )
     st.markdown("")
-    yearStart, yearEnd = st.select_slider(
-        "Selectionner une date",
-        options=["1999", "2010", "2015", "2021", "2024"],
-        value=("1999", "2015"))
-    st.button("Sélectionner", type="primary")
+   ## st.select_slider(
+   ##     "Selectionner une date",
+   ##     options=["1999", "2010", "2015", "2021", "2024"],
+   ##     value=("1999", "2015"),
+   ##     key="dateRange",
+   ##     on_change=filterByDate
+   ## )
 
 with col[1]:
     st.header("Graphes")
-    graphTabEvolution, graphTabComparison = st.tabs(["Evolution", "Comparaison"])
+    graphTabLinePlot, graphTabBarPlot = st.tabs(["Line Plot", "Bar Plot"])
     
-    with graphTabEvolution:
-        st.markdown("graphe evolution")
-        print(st.session_state.department)
-        print(st.session_state.dfGraph)
+    with graphTabLinePlot:
         st.line_chart(st.session_state.dfGraph.transpose())
 
-    with graphTabComparison:
-        st.markdown("graphe comparaison")
+    with graphTabBarPlot:
+        st.bar_chart(st.session_state.dfGraph.transpose())
 
 with col[2]:
     st.header("Tableaux")
+    st.dataframe(st.session_state.dfGraph)    
     st.dataframe(df)    
 
 st.header("Description du dashboard")
