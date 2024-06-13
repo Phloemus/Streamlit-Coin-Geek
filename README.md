@@ -70,14 +70,18 @@ du tutoriel !
 Le tutoriel est découpé en plusieurs parties afin d'illustrer les différents concepts essentiels à maîtriser pour 
 créer un dashboard Streamlit élégant et interactif.
 
-Ce tutoriel est divisé en plusieurs étapes. Chaque étape abouti à une application streamlit et illustre un sous ensemble
-de concepts important lorsque l'on crée des dashboards avec Streamlit
+Ce tutoriel est divisé en plusieurs étapes. Chaque partie abouti avec un peu de pratique où 
+l'on manip les concepts vu dans la partie dans un dashboard streamlit test (**app.py**)
 
 ### Sommaire
 
 1. Créer un layout pour son dashboard
 2. Ajouter de nouvelles pages
 3. Rendre son dashboard interactif
+
+## Commencer le tutoriel
+
+Pour passer à la suite du tutoriel, voir le *README* du dossier **src**
 
 ## Documentation officielle
 

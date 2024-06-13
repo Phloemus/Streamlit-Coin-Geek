@@ -17,6 +17,26 @@ bash
 conda env create --name <env-name> -f environment.yaml
 ```
 
+### Créer son un dashboard de base
+
+Pour créer son dashboard, il suffit de créer un fichier **app.py** dans le dossier **src** de 
+la repo
+
+```
+bash 
+cd src
+touch app.py
+```
+
+Pour avoir un dashboard minimal avec Streamlit il suffit d'ajouter le package streamlit à 
+**app.py** 
+
+```
+python
+## Dans le fichier app.py
+import streamlit as st
+```
+
 ### Lancer son dashboard 
 
 ```
@@ -26,14 +46,10 @@ streamlit run app.py
 
 Streamlit se lance par défaut sur le port **8051** - [Voir mon dashboard local](http://localhost:8051)
 
-## Créer un layout pour son dashboard
+Normalement le dashboard est vide, il s'agit juste d'une page blanche avec une barre de 
+navigation sur le côté permettant d'accèder aux différentes pages du tutoriel. 
 
-## Ajouter de nouvelles pages
+### Suivre le tutoriel
 
-## Rendre son dashboard interactif
-
-## Partager son dashboard avec d'autres personnes
-
-### Déployer sur le service cloud de Streamlit
-
-### Déployer sur une machine virtuelle
+Le tutoriel se découpe en plusieurs parties. Une partie par page. Aller sur la page **Bases** 
+grâce à la barre de navigation pour commencer le tutoriel !
