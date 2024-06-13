@@ -57,7 +57,7 @@ Créer un environement conda avec les packages nécéssaire pour le tutoriels
 
 ```
 bash
-conda create --name streamlit-coin-geek
+conda env create --name streamlit-coin-geek
 source activate streamlit-coin-geek
 conda env export > src/environment.yaml
 ```
@@ -78,9 +78,6 @@ de concepts important lorsque l'on crée des dashboards avec Streamlit
 1. Créer un layout pour son dashboard
 2. Ajouter de nouvelles pages
 3. Rendre son dashboard interactif
-4. Partager son dashboard avec d'autres personnes
-   - Déployer sur le service cloud de Streamlit
-   - Déployer sur une machine virtuelle
 
 ## Documentation officielle
 
